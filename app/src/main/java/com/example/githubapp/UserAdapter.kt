@@ -1,5 +1,6 @@
 package com.example.githubapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,12 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                     .load(user.photo)
                     .apply(RequestOptions().override(100, 100))
                     .into(ciProfile)
+
+                root.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_USERNAME, user.username)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }

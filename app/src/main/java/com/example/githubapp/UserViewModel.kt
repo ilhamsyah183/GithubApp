@@ -17,7 +17,7 @@ class UserViewModel: ViewModel() {
         val listUser = ArrayList<User>()
         val url = "https://api.github.com/search/users?q=$username"
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", BuildConfig.GITHUB_TOKEN)
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler(){
             override fun onSuccess(
@@ -38,7 +38,7 @@ class UserViewModel: ViewModel() {
                         userList.url = user.getString("html_url")
                         listUser.add(userList)
                     }
-                    listUsers.postValue(listUser)
+                    listUsers.value = listUser
                 }catch (e: Exception){
                     Log.d("Error Try ", e.message.toString())
                 }
